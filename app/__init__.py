@@ -1,7 +1,12 @@
 from flask import Flask
+from app.views.index_view import bp as index_bp
+from app.views.receitas_view import bp as receitas_bp
 
-app = Flask(__name__)
+def create_app():
 
-@app.route('/')
-def home():
-    return {'status': 'OK'}
+    app = Flask(__name__)
+
+    app.register_blueprint(index_bp)
+    app.register_blueprint(receitas_bp)
+
+    return app
